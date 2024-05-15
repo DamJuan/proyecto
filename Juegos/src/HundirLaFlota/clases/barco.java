@@ -35,6 +35,48 @@ public class barco {
         this.posicion = posicion;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getTamano() {
+        return tamano;
+    }
+
+    public void setTamano(int tamano) {
+        this.tamano = tamano;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setPosicionesx(ArrayList<Integer> posicionesx) {
+        this.posicionesx = posicionesx;
+    }
+
+    public void setPosicionesy(ArrayList<Integer> posicionesy) {
+        this.posicionesy = posicionesy;
+    }
+
+    public ArrayList<Integer> getPosicionesx() {
+        return posicionesx;
+    }
+
+    public ArrayList<Integer> getPosicionesy() {
+        return posicionesy;
+    }
+
+    public void setPosiciones(ArrayList<Integer> posicionesx,ArrayList<Integer> posicionesy) {
+        this.posicionesx = posicionesx;
+        this.posicionesy = posicionesy;
+    }
+
+    public void setPosiciones(int x,int y) {
+        this.posicionesx.add(x);
+        this.posicionesy.add(y);
+    }
+
     public int posiciones(){
         return this.posicionesx.size();
     }

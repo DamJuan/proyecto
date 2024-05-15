@@ -81,5 +81,27 @@ public class HundirFlota {
 
     }
 
-    publ
+    //TODO cuando se golpea un barco el turno del jugador debe seguir
+//TODO cuando se golpea agua el turno del jugador debe cambiar
+
+    //TODO MOSTRAR LOS BARCOS QUE QUEDAN POR PONER EN EL TABLERO
+    //TODO PRIMER TURNO ES PARA COLOCAR LOS BARCOS EL TURNO ACABA CUANDO SE HAN COLOCADO TODOS LOS BARCOS
+
+    public static void colocarBarcos() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Vamos a colocar los barcos en el tablero.");
+        System.out.println("Elige la posición de tu barco:");
+        System.out.println("1. Portaaviones (5 posiciones)");
+        System.out.println("2. Acorazado (4 posiciones)");
+        System.out.println("3. Submarino (3 posiciones)");
+        System.out.println("4. Destructor (2 posiciones)");
+        System.out.println("5. Salir");
+
+        int opcion = sc.nextInt();
+
+        //TODO al elegir el barco se tiene que decidir si se coloca en horizontal o vertical y en qué posición
+
+
+
+    }
 }
