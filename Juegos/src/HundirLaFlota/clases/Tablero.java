@@ -1,11 +1,12 @@
 package HundirLaFlota.clases;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Tablero {
+public class Tablero implements Serializable {
 
     private static String[][] tablero = new String[10][10];
 
@@ -38,10 +39,56 @@ public class Tablero {
     }
 
     public static Map<Integer, String> colocarBarco(int fila, int columna,  int size) {
-
         Map<Integer, String> mapOpciones;
         return mapOpciones = analizarPos(fila, columna, size);
+    }
 
+    public static void marcarPosicionesBarco(String posicion, int size, int fila, int columna) {
+
+        switch (posicion) {
+            case "Vertical Arriba":
+                rellenarVerticalArriba(fila, columna, size);
+                break;
+            case "Vertical Abajo":
+                rellenarVerticalAbajo(fila, columna, size);
+                break;
+            case "Horizontal Derecha":
+                rellenarHorizontalDerecha(fila, columna, size);
+                break;
+            case "Horizontal Izquierda":
+                rellenarHorizontalIzquierda(fila, columna, size);
+                break;
+        }
+    }
+
+    public static void rellenarVerticalArriba(int fila, int columna, int size) {
+        for (int i = fila; i >= (fila - size); i--) {
+            tablero[i][columna] = " S ";
+        }
+    }
+
+    public static void rellenarVerticalAbajo(int fila, int columna, int size) {
+        for (int i = fila; i <= (fila + size); i++) {
+            tablero[i][columna] = " S ";
+        }
+    }
+
+    public static void rellenarHorizontalDerecha(int fila, int columna, int size) {
+        for (int i = columna; i <= (columna + size); i++) {
+            tablero[fila][i] = " S ";
+        }
+    }
+
+    public static void rellenarHorizontalIzquierda(int fila, int columna, int size) {
+        for (int i = columna; i >= (columna - size); i--) {
+            tablero[fila][i] = " S ";
+        }
+    }
+
+
+
+    public static void marcarGolpe(int fila, int columna) {
+        tablero[fila][columna] = " X ";
     }
 
 
@@ -84,6 +131,7 @@ public class Tablero {
         for (int i = fila; i <= (fila - size); i--) {
             if (tablero[i][columna].equalsIgnoreCase(" S ")) {
                 sePuede = Boolean.FALSE;
+                break;
             } else {
                 sePuede = Boolean.TRUE;
             }
@@ -99,6 +147,7 @@ public class Tablero {
         for (int i = fila; i <= (fila + size); i++) {
             if (tablero[i][columna].equalsIgnoreCase(" S ")) {
                 sePuede = Boolean.FALSE;
+                break;
             } else {
                 sePuede = Boolean.TRUE;
             }
@@ -115,6 +164,7 @@ public class Tablero {
         for (int i = columna; i <= (columna + size); i++) {
             if (tablero[fila][i].equalsIgnoreCase(" S ")) {
                 sePuede = Boolean.FALSE;
+                break;
             } else {
                 sePuede = Boolean.TRUE;
             }
@@ -131,6 +181,7 @@ public class Tablero {
         for (int i = columna; i <= (columna - size); i--) {
             if (tablero[fila][i].equalsIgnoreCase(" S ")) {
                 sePuede = Boolean.FALSE;
+                break;
             } else {
                 sePuede = Boolean.TRUE;
             }

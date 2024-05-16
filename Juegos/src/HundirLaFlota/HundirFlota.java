@@ -41,6 +41,14 @@ public class HundirFlota {
             namePVE();
         }
 
+        System.out.println("¿Quieres salir del juego? (S/N)");
+        String respuestaSalir = sc.nextLine();
+        if (respuestaSalir.equalsIgnoreCase("S")) {
+            System.out.println("Saliendo del juego...");
+            salir();
+        } else {
+            System.out.println("Vamos a seguir jugando!");
+        }
     }
 
     public static void mostrarInstrucciones() {
@@ -125,28 +133,16 @@ public class HundirFlota {
             }
         }
 
-        Tablero.mostrarTablero();
-
-
         boolean juegoEnCurso = true;
         int jugadorActual = 0;
+
         while (juegoEnCurso) {
-
             turnoJugador(listaJugadores.get(jugadorActual));
-
             juegoEnCurso = comprobarEstadoJuego();
-
             jugadorActual = (jugadorActual + 1) % listaJugadores.size();
         }
 
         System.out.println("Fin del juego!");
-
-
-
-        //TODO implementar el juego
-        //TODO implementar el turno de los jugadores
-
-
 
     }
 
@@ -154,7 +150,7 @@ public class HundirFlota {
     //TODO cuando se golpea agua el turno del jugador debe cambiar
 
     //TODO MOSTRAR LOS BARCOS QUE QUEDAN POR PONER EN EL TABLERO
-    //TODO PRIMER TURNO ES PARA COLOCAR LOS BARCOS EL TURNO ACABA CUANDO SE HAN COLOCADO TODOS LOS BARCOS
+    //TODO PRIMER TURNO ES PARA COLOCAR LOS BARCOS EL TURNO ACABA CUANDO SE HAN COLOCADO TODOS LOS BARCOS SE TIENE QUE MOSTRAR UNA S EN LAS CASILLAS QUE OCUPE EL BARCO
 
     public static void colocarBarcos(Jugador jugador, Tablero tablero) {
 
@@ -184,7 +180,6 @@ public class HundirFlota {
 
                 int fila, columna;
 
-
                 if (!jugador.getEsMaquina()) {
                     System.out.println("Introduce la fila donde quieres colocar el barco: ");
                     fila = sc.nextInt();
@@ -200,7 +195,9 @@ public class HundirFlota {
 
                 Map<Integer, String> mapOpciones = tablero.colocarBarco(fila, columna, barco.getSize());
 
-                mostrarOpcionesColocarBarco(mapOpciones);
+                int opcionColocarBarco = mostrarOpcionesColocarBarco(mapOpciones);
+
+                ejecutarOpcion(opcionColocarBarco, mapOpciones, tablero, barco.getSize(), fila, columna);
 
                 jugador.addBarco(barco);
                 break;
@@ -212,13 +209,32 @@ public class HundirFlota {
 
     }
 
-    public static void mostrarOpcionesColocarBarco(Map<Integer, String> mapOpciones) {
+    public static void ejecutarOpcion(int opcion, Map<Integer, String> mapOpciones, Tablero tablero, int size, int fila, int columna) {
+
+        int numOpciones = mapOpciones.size();
+
+        if (opcion < numOpciones) {
+            tablero.marcarPosicionesBarco(mapOpciones.get(opcion), size, fila, columna);
+
+        } else if (opcion == numOpciones) {
+            System.out.println("⚠ Parece ser que no hay espacio suficiente para colocar el barco en esa posición. ⚠");
+            System.out.println("🔄 Vuelve a probar con otra posición. 🔄");
+
+        } else {
+            System.out.println("❌Opción inválida. Vuelve a intentarlo.❌");
+
+        }
+    }
+
+    public static int mostrarOpcionesColocarBarco(Map<Integer, String> mapOpciones) {
         System.out.println("Elige la posición de tu barco:");
         for (Map.Entry<Integer, String> entry : mapOpciones.entrySet()) {
             System.out.println("\n" + entry.getKey() + ". " + entry.getValue());
         }
         int opcion = sc.nextInt();
         sc.nextLine();
+
+        return opcion;
     }
 
 
@@ -248,18 +264,15 @@ public class HundirFlota {
         int columna = sc.nextInt();
         sc.nextLine();
 
-        /*
-         = Tablero.analizarPos(fila, columna, size);
-        if (barco != null) {
-            System.out.println("Has golpeado un " + barco.getNombre() + "!");
-            // Cambiar el turno al mismo jugador
-
+        if (jugador.getTablero().hayBarccoEnPosicion(fila,columna)) {
+            System.out.println("Has golpeado un barco!");
+            jugador.getTablero().marcarGolpe(fila,columna);
         } else {
-            System.out.println("Has golpeado agua. El turno pasa al otro jugador.");
-            // Cambiar el turno al otro jugador
-            // ...
+            System.out.println("Has golpeado agua.");
+            jugadorActual = (jugadorActual + i) % listaJugadores.size();
         }
-         */
+
+        jugadorActual = (jugadorActual + 1) % listaJugadores.size();
     }
 
     public static boolean comprobarEstadoJuego() {
