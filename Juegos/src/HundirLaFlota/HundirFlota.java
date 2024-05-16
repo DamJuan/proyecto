@@ -62,17 +62,28 @@ public class HundirFlota {
             }
             br.close();
         } catch (IOException e) {
-            System.err.println("Error al leer el archivo: " + e.getMessage());
+            System.out.println("Error al leer el archivo: " + e.getMessage());
+            //LOGGER.error("Error al leer el archivo: " + e.getMessage());
         }
 
     }
 
     public static void namePVP() {
-        System.out.println("👤 Introduce el nombre del jugador 1 👤: ");
-        String nombreJugador1 = sc.nextLine();
 
-        System.out.println("👤 Introduce el nombre del jugador 2 👤:");
-        String nombreJugador2 = sc.nextLine();
+        String nombreJugador1 = "Jugador 1";
+        String nombreJugador2 = "Jugador 2";
+
+        try {
+            System.out.println("👤 Introduce el nombre del jugador 1 👤: ");
+            nombreJugador1 = sc.nextLine();
+
+            System.out.println("👤 Introduce el nombre del jugador 2 👤:");
+            nombreJugador2 = sc.nextLine();
+        } catch (NoSuchElementException e) {
+            System.out.println("Error: " + e.getMessage());
+            //LOGGER.error("Error: " + e.getMessage());
+        }
+
 
         Tablero tableroJugador1 = new Tablero();
         Tablero tableroJugador2 = new Tablero();
@@ -96,11 +107,20 @@ public class HundirFlota {
     public static void namePVE() {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("👤 Introduce el nombre del jugador 👤: ");
-        String nombreJugador = sc.nextLine();
+        String nombreJugador = "Jugador";
+        String nombreMaquina = "Máquina";
 
-        System.out.println("🤖 Introduce el nombre de la maquina 🤖: ");
-        String nombreMaquina = sc.nextLine();
+        try {
+            System.out.println("👤 Introduce el nombre del jugador 👤: ");
+            nombreJugador = sc.nextLine();
+
+            System.out.println("🤖 Introduce el nombre de la maquina 🤖: ");
+            nombreMaquina = sc.nextLine();
+        } catch (NoSuchElementException e) {
+            System.out.println("Error: " + e.getMessage());
+            //LOGGER.error("Error: " + e.getMessage());
+        }
+
 
         Tablero tableroJugador = new Tablero();
         Tablero tableroMaquina = new Tablero();
@@ -128,7 +148,7 @@ public class HundirFlota {
             System.out.println("Turno de " + jugador.getNombre());
 
             while (jugador.getBarcos().size() < 5) {
-                colocarBarcos(jugador, jugador.getTablero());
+                colocarBarcos(jugador);
                 jugador.getTablero().mostrarTablero();
             }
         }
@@ -149,10 +169,7 @@ public class HundirFlota {
     //TODO cuando se golpea un barco el turno del jugador debe seguir
     //TODO cuando se golpea agua el turno del jugador debe cambiar
 
-    //TODO MOSTRAR LOS BARCOS QUE QUEDAN POR PONER EN EL TABLERO
-    //TODO PRIMER TURNO ES PARA COLOCAR LOS BARCOS EL TURNO ACABA CUANDO SE HAN COLOCADO TODOS LOS BARCOS SE TIENE QUE MOSTRAR UNA S EN LAS CASILLAS QUE OCUPE EL BARCO
-
-    public static void colocarBarcos(Jugador jugador, Tablero tablero) {
+    public static void colocarBarcos(Jugador jugador) {
 
         int opcionBarco = menuOpcionesJuego();
 
@@ -192,12 +209,11 @@ public class HundirFlota {
                     columna = generarNumeroRandom(0, 9);
                 }
 
+                Map<Integer, String> mapOpciones = jugador.getTablero().colocarBarco(fila, columna, barco.getSize());
 
-                Map<Integer, String> mapOpciones = tablero.colocarBarco(fila, columna, barco.getSize());
+                int opcionColocarBarco = mostrarOpcionesColocarBarco(mapOpciones, jugador);
 
-                int opcionColocarBarco = mostrarOpcionesColocarBarco(mapOpciones);
-
-                ejecutarOpcion(opcionColocarBarco, mapOpciones, tablero, barco.getSize(), fila, columna);
+                ejecutarOpcion(opcionColocarBarco, mapOpciones, jugador, barco.getSize(), fila, columna);
 
                 jugador.addBarco(barco);
                 break;
@@ -209,12 +225,12 @@ public class HundirFlota {
 
     }
 
-    public static void ejecutarOpcion(int opcion, Map<Integer, String> mapOpciones, Tablero tablero, int size, int fila, int columna) {
+    public static void ejecutarOpcion(int opcion, Map<Integer, String> mapOpciones, Jugador jugador, int size, int fila, int columna) {
 
         int numOpciones = mapOpciones.size();
 
         if (opcion < numOpciones) {
-            tablero.marcarPosicionesBarco(mapOpciones.get(opcion), size, fila, columna);
+            jugador.getTablero().marcarPosicionesBarco(mapOpciones.get(opcion), size, fila, columna);
 
         } else if (opcion == numOpciones) {
             System.out.println("⚠ Parece ser que no hay espacio suficiente para colocar el barco en esa posición. ⚠");
@@ -226,13 +242,22 @@ public class HundirFlota {
         }
     }
 
-    public static int mostrarOpcionesColocarBarco(Map<Integer, String> mapOpciones) {
-        System.out.println("Elige la posición de tu barco:");
-        for (Map.Entry<Integer, String> entry : mapOpciones.entrySet()) {
-            System.out.println("\n" + entry.getKey() + ". " + entry.getValue());
+    public static int mostrarOpcionesColocarBarco(Map<Integer, String> mapOpciones, Jugador jugador) {
+        int opcion;
+
+        if (!jugador.getEsMaquina()) {
+            System.out.println("Elige la posición de tu barco:");
+            for (Map.Entry<Integer, String> entry : mapOpciones.entrySet()) {
+                System.out.println("\n" + entry.getKey() + ". " + entry.getValue());
+            }
+            opcion = sc.nextInt();
+            sc.nextLine();
+        } else {
+            if (mapOpciones.size() > 1) {
+                opcion = generarNumeroRandom(1, mapOpciones.size() - 1);
+            }
+
         }
-        int opcion = sc.nextInt();
-        sc.nextLine();
 
         return opcion;
     }
