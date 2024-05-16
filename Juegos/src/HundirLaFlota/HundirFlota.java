@@ -86,18 +86,31 @@ public class HundirFlota {
 
         System.out.println("Vamos a colocar los barcos en el tablero.");
 
+        for (Jugador jugador : listaJugadores) {
+            System.out.println("Turno de " + jugador.getNombre());
+            while (jugador.getBarcos().size() < 5) {
+                colocarBarcos();
+                Tablero.mostrarTablero();
+            }
+        }
+
         Tablero.mostrarTablero();
 
-        while (setBarcosJugador1.size() < 5) {
-            colocarBarcos();
-            Tablero.mostrarTablero();
 
+        boolean juegoEnCurso = true;
+        int jugadorActual = 0;
+        while (juegoEnCurso) {
+
+            turnoJugador(listaJugadores.get(jugadorActual));
+
+            juegoEnCurso = comprobarEstadoJuego();
+
+            jugadorActual = (jugadorActual + 1) % listaJugadores.size();
         }
 
-        while (setBarcosJugador2.size() < 5) {
-            colocarBarcos();
-            Tablero.mostrarTablero();
-        }
+        System.out.println("Fin del juego!");
+
+
 
         //TODO implementar el juego
         //TODO implementar el turno de los jugadores
@@ -107,7 +120,7 @@ public class HundirFlota {
     }
 
     //TODO cuando se golpea un barco el turno del jugador debe seguir
-//TODO cuando se golpea agua el turno del jugador debe cambiar
+    //TODO cuando se golpea agua el turno del jugador debe cambiar
 
     //TODO MOSTRAR LOS BARCOS QUE QUEDAN POR PONER EN EL TABLERO
     //TODO PRIMER TURNO ES PARA COLOCAR LOS BARCOS EL TURNO ACABA CUANDO SE HAN COLOCADO TODOS LOS BARCOS
@@ -180,6 +193,31 @@ public class HundirFlota {
         sc.nextLine();
         return opcion;
 
+    }
+
+    public static void turnoJugador(Jugador jugador) {
+        System.out.println("Turno de " + jugador.getNombre());
+        System.out.println("Elige una posición para atacar (primero la fila, luego la columna):");
+        int fila = sc.nextInt();
+        int columna = sc.nextInt();
+
+        // Verificar si hay un barco en la posición elegida
+        TiposBarco barco = Tablero.analizarPos(fila, columna,size);
+        if (barco != null) {
+            System.out.println("Has golpeado un " + barco.getNombre() + "!");
+            // Cambiar el turno al mismo jugador
+
+
+        } else {
+            System.out.println("Has golpeado agua. El turno pasa al otro jugador.");
+            // Cambiar el turno al otro jugador
+            // ...
+        }
+    }
+
+    public static boolean comprobarEstadoJuego() {
+        //TODO comprobar si todos los barcos de un jugador han sido hundidos
+        return false;
     }
 
 

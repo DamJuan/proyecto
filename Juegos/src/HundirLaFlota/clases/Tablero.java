@@ -1,8 +1,12 @@
 package HundirLaFlota.clases;
 
+import java.util.Scanner;
+
 public class Tablero {
 
     private static String[][] tablero = new String[10][10];
+
+    static Scanner sc = new Scanner(System.in);
 
     //TODO mostrar el tablero principal vacio
     //Todo cada jugador tiene su propio tablero
@@ -25,6 +29,17 @@ public class Tablero {
             }
             System.out.println();
         }
+    }
+
+    public static void colocarBarco() {
+        System.out.println("Introduce la fila donde quieres colocar el barco: ");
+        int fila = Integer.parseInt(sc.nextLine());
+        System.out.println("Introduce la columna donde quieres colocar el barco: ");
+        int columna = Integer.parseInt(sc.nextLine());
+        System.out.println("Introduce el tamaño del barco: ");
+        int size = Integer.parseInt(sc.nextLine());
+
+        System.out.println(analizarPos(fila, columna, size));
     }
 
 

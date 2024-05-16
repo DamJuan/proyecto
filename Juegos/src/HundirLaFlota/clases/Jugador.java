@@ -21,6 +21,14 @@ public class Jugador {
         return this.nombre;
     }
 
+    public void addBarco(TiposBarco barco) {
+        barcos.add(barco);
+    }
+
+    public Set<TiposBarco> getBarcos() {
+        return barcos;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

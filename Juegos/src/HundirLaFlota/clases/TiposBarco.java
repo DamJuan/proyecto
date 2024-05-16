@@ -27,9 +27,4 @@ public enum TiposBarco {
         return nombre;
     }
 
-    //TODO HACER UN MAP DE TIPOS BARCO, STRING MAPBARCOS = new HashMap<>();
-    //todo GUARDAR LA POSICION DEL BARCO HORIZONTAL O VERTICAL
-    //todo DEPENDIENDO DEL TIPO DE NOMBRE DEL BARCO
-
-
 }
