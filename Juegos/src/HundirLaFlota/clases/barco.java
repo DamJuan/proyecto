@@ -3,17 +3,17 @@ package HundirLaFlota.clases;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class barco {
+public class Barco {
     private String nombre;
     private int tamano;
     private String posicion;
     public ArrayList<Integer> posicionesx=new ArrayList<Integer>();
     public ArrayList<Integer> posicionesy=new ArrayList<Integer>();
 
-    enum barcos{
+    enum Barcos{
         PORTAAVIONES(5),ACORAZADO(4),SUBMARINO(3),DESTRUCTOR(2);
         private final int SIZE;
-        barcos(int tamano){
+        Barcos(int tamano){
             this.SIZE=tamano;
         }
         public int getSIZE(){
@@ -21,7 +21,7 @@ public class barco {
         }
     }
 
-    public barco(int tamano,String nombre,String posicion) {
+    public Barco(int tamano,String nombre,String posicion) {
         this.tamano = tamano;
         this.nombre = nombre;
         this.posicion=posicion;
@@ -93,7 +93,7 @@ public class barco {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        barco barco = (barco) o;
+        Barco barco = (Barco) o;
         return tamano == barco.tamano && Objects.equals(nombre, barco.nombre) && Objects.equals(posicion, barco.posicion) && Objects.equals(posicionesx, barco.posicionesx) && Objects.equals(posicionesy, barco.posicionesy);
     }
 

@@ -1,7 +1,6 @@
 package HundirLaFlota;
 
-import HundirLaFlota.clases.Tablero;
-import HundirLaFlota.clases.barco;
+import HundirLaFlota.clases.*;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -12,7 +11,7 @@ import java.util.Scanner;
 
 public class HundirFlota {
 
-    private static ArrayList<barco> barcos = new ArrayList<>();
+    private static ArrayList<Barco> Barco = new ArrayList<>();
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -78,6 +77,7 @@ public class HundirFlota {
     public static void empezarJuego() {
 
         Tablero.mostrarTablero();
+        colocarBarcos();
 
     }
 
