@@ -1,8 +1,6 @@
 package HundirLaFlota;
 
-import HundirLaFlota.clases.Jugador;
-import HundirLaFlota.clases.Tablero;
-import HundirLaFlota.clases.TiposBarco;
+import HundirLaFlota.clases.*;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -12,11 +10,10 @@ import java.util.*;
 
 public class HundirFlota {
 
-    static final File REGLAS = new File("src\\HundirLaFlota\\Reglas.");
+    static final File REGLAS = new File("src\\HundirLaFlota\\Reglas");
     static Scanner sc = new Scanner(System.in);
-    static Set<TiposBarco> setBarcosJugador1 = new HashSet<>();
-    static Set<TiposBarco> setBarcosJugador2 = new HashSet<>();
     static List<Jugador> listaJugadores = new LinkedList<>();
+    static List<Tablero> listaTableros = new LinkedList<>();
 
     public static void main(String[] args) {
 
@@ -35,7 +32,7 @@ public class HundirFlota {
 
         if (PVPoPVE.equalsIgnoreCase("Jugador")) {
             namePVP();
-        } else if (PVPoPVE.equalsIgnoreCase("Máquina")) {
+        } else if (PVPoPVE.equalsIgnoreCase("Máquina") || PVPoPVE.equalsIgnoreCase("Maquina")) {
             namePVE();
         }
 
@@ -60,16 +57,24 @@ public class HundirFlota {
     public static void namePVP() {
         System.out.println("👤 Introduce el nombre del jugador 1 👤: ");
         String nombreJugador1 = sc.nextLine();
+
         System.out.println("👤 Introduce el nombre del jugador 2 👤:");
         String nombreJugador2 = sc.nextLine();
 
-        Jugador jugador1 = new Jugador(nombreJugador1);
-        Jugador jugador2 = new Jugador(nombreJugador2);
+        Tablero tableroJugador1 = new Tablero();
+        Tablero tableroJugador2 = new Tablero();
+
+        Jugador jugador1 = new Jugador(nombreJugador1, tableroJugador1);
+        Jugador jugador2 = new Jugador(nombreJugador2, tableroJugador2);
 
         listaJugadores.add(jugador1);
         listaJugadores.add(jugador2);
 
+        listaTableros.add(tableroJugador1);
+        listaTableros.add(tableroJugador2);
+
         System.out.println("Bienvenidos " + listaJugadores.get(0).getNombre() + " y " + listaJugadores.get(1).getNombre() + "! 🎉🎊🎉🎊");
+
         empezarJuego();
 
     }
@@ -88,8 +93,9 @@ public class HundirFlota {
 
         for (Jugador jugador : listaJugadores) {
             System.out.println("Turno de " + jugador.getNombre());
+
             while (jugador.getBarcos().size() < 5) {
-                colocarBarcos();
+                colocarBarcos(jugador, jugador.getTablero());
                 Tablero.mostrarTablero();
             }
         }
@@ -125,62 +131,50 @@ public class HundirFlota {
     //TODO MOSTRAR LOS BARCOS QUE QUEDAN POR PONER EN EL TABLERO
     //TODO PRIMER TURNO ES PARA COLOCAR LOS BARCOS EL TURNO ACABA CUANDO SE HAN COLOCADO TODOS LOS BARCOS
 
-    public static void colocarBarcos() {
+    public static void colocarBarcos(Jugador jugador, Tablero tablero) {
 
         int opcionBarco = menuOpcionesJuego();
 
         TiposBarco barco = null;
 
+        if (opcionBarco == 1) {
+            barco = TiposBarco.PORTAVIONES;
+        } else if (opcionBarco == 2) {
+            barco = TiposBarco.ACORAZADO;
+        } else if (opcionBarco == 3) {
+            barco = TiposBarco.SUBMARINO;
+        } else if (opcionBarco == 4) {
+            barco = TiposBarco.DESTRUCTOR;
+        } else if (opcionBarco == 5){
+            barco = TiposBarco.FRAGATA;
+        }
+
         switch (opcionBarco) {
             case 1, 2, 3, 4, 5:
-                if (opcionBarco == 1) {
-                    barco = TiposBarco.PORTAVIONES;
-                } else if (opcionBarco == 2) {
-                    barco = TiposBarco.ACORAZADO;
-                } else if (opcionBarco == 3) {
-                    barco = TiposBarco.SUBMARINO;
-                } else if (opcionBarco == 4) {
-                    barco = TiposBarco.DESTRUCTOR;
-                } else if (opcionBarco == 5) {
-                    barco = TiposBarco.FRAGATA;
-                }
 
-                if (setBarcosJugador1.contains(barco)) {
+                if (jugador.getBarcos().contains(barco)) {
                     System.out.println("Ya has colocado este barco.");
-                    return;
+                    break;
                 }
 
-                System.out.println("Elige la posición de tu barco:" +
-                        "\n1. Horizontal" +
-                        "\n2. Vertical");
-                int posicion = sc.nextInt();
-                if (posicion == 1) {
-                    System.out.println("Elige la fila donde quieres colocar el barco:");
-                    int fila = sc.nextInt();
-                    System.out.println("Elige la columna donde quieres colocar el barco:");
-                    int columna = sc.nextInt();
-                    Tablero.colocarBarco(fila, columna, barcos.get(opcionBarco));
-                } else if (posicion == 2) {
-                    System.out.println("Elige la fila donde quieres colocar el barco:");
-                    int fila = sc.nextInt();
-                    System.out.println("Elige la columna donde quieres colocar el barco:");
-                    int columna = sc.nextInt();
-                    Tablero.colocarBarco(fila, columna, barcos.get(opcionBarco));
-                }
+                Map<Integer, String> mapOpciones = tablero.colocarBarco(barco.getSize());
+
+                jugador.addBarco(barco);
                 break;
 
             default:
                 System.out.println("Opción no válida.");
                 break;
-
         }
-        //TODO al elegir el barco se tiene que decidir si se coloca en horizontal o vertical y en qué posición
+
+
 
 
     }
+        //TODO al elegir el barco se tiene que decidir si se coloca en horizontal o vertical y en qué posición
+
 
     public static int menuOpcionesJuego() {
-
 
         System.out.println("Vamos a colocar los barcos en el tablero." +
                 "\nElige la posición de tu barco:" +
@@ -191,8 +185,8 @@ public class HundirFlota {
                 "\n5. " + TiposBarco.FRAGATA.getNombre() + " (" + TiposBarco.FRAGATA.getSize() + " casillas)");
         int opcion = sc.nextInt();
         sc.nextLine();
-        return opcion;
 
+        return opcion;
     }
 
     public static void turnoJugador(Jugador jugador) {
@@ -200,19 +194,20 @@ public class HundirFlota {
         System.out.println("Elige una posición para atacar (primero la fila, luego la columna):");
         int fila = sc.nextInt();
         int columna = sc.nextInt();
+        sc.nextLine();
 
-        // Verificar si hay un barco en la posición elegida
-        TiposBarco barco = Tablero.analizarPos(fila, columna,size);
+        /*
+         = Tablero.analizarPos(fila, columna, size);
         if (barco != null) {
             System.out.println("Has golpeado un " + barco.getNombre() + "!");
             // Cambiar el turno al mismo jugador
-
 
         } else {
             System.out.println("Has golpeado agua. El turno pasa al otro jugador.");
             // Cambiar el turno al otro jugador
             // ...
         }
+         */
     }
 
     public static boolean comprobarEstadoJuego() {

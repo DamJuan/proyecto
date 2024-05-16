@@ -1,5 +1,8 @@
 package HundirLaFlota.clases;
 
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Tablero {
@@ -11,6 +14,16 @@ public class Tablero {
     //TODO mostrar el tablero principal vacio
     //Todo cada jugador tiene su propio tablero
     //TODO ir mostrando los barcos en el tablero
+
+    public Tablero() {
+        rellenarTablero();
+    }
+
+    public static void rellenarTablero() {
+        for (int i = 0; i < tablero.length; i++) {
+            Arrays.fill(tablero[i], " ~ ");
+        }
+    }
 
     public static void mostrarTablero() {
         System.out.print("   ");
@@ -31,57 +44,49 @@ public class Tablero {
         }
     }
 
-    public static void colocarBarco() {
+    public static Map<Integer, String> colocarBarco(int size) {
         System.out.println("Introduce la fila donde quieres colocar el barco: ");
-        int fila = Integer.parseInt(sc.nextLine());
-        System.out.println("Introduce la columna donde quieres colocar el barco: ");
-        int columna = Integer.parseInt(sc.nextLine());
-        System.out.println("Introduce el tamaño del barco: ");
-        int size = Integer.parseInt(sc.nextLine());
+        int fila = sc.nextInt();
 
-        System.out.println(analizarPos(fila, columna, size));
+        System.out.println("Introduce la columna donde quieres colocar el barco: ");
+        int columna = sc.nextInt();
+
+        Map<Integer, String> mapOpciones;
+        return mapOpciones = analizarPos(fila, columna, size);
+
     }
 
 
-    public static String analizarPos(int fila, int columna, int size) {
+    public static Map<Integer, String> analizarPos(int fila, int columna, int size) {
 
-        boolean vertArriba;
-        boolean vertAbajo;
-        boolean horDerecha;
-        boolean horIzquierda;
-
-        vertArriba = analizarVertArriba(fila, columna, size);
-        vertAbajo = analizarVertAbajo(fila, columna, size);
-        horDerecha = analizarHorDerecha(fila, columna, size);
-        horIzquierda = analizarHorIzquierda(fila, columna, size);
-
-        String opciones = "Estas son tus opciones: ";
+        Map<Integer, String> mapOpciones = new LinkedHashMap<>();
 
         int opcion = 1;
 
-        if (vertArriba) {
-            opciones += "\n" + opcion + ". Vertical Arriba";
+        if (analizarVertArriba(fila, columna, size)) {
+            mapOpciones.put(opcion, "Vertical Arriba");
             opcion++;
         }
 
-        if (vertAbajo) {
-            opciones += "\n" + opcion + ". Vertical Abajo";
+        if (analizarVertAbajo(fila, columna, size)) {
+            mapOpciones.put(opcion, "Vertical Abajo");
             opcion++;
         }
 
-        if (horDerecha) {
-            opciones += "\n" + opcion + ". Horizontal Derecha";
+        if (analizarHorDerecha(fila, columna, size)) {
+            mapOpciones.put(opcion, "Horizontal Derecha");
             opcion++;
         }
 
-        if (horIzquierda) {
-            opciones += "\n" + opcion + ". Horizontal Izquierda";
+        if (analizarHorIzquierda(fila, columna, size)) {
+            mapOpciones.put(opcion, "Horizontal Izquierda");
             opcion++;
         }
 
-        opciones += "\n" + opcion + ". Cambiar Posicion";
+        mapOpciones.put(opcion, "Cambiar Posición");
 
-        return opciones;
+        return mapOpciones;
+
     }
 
     public static boolean analizarVertArriba(int fila, int columna, int size) {

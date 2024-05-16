@@ -1,34 +1,48 @@
 package HundirLaFlota.clases;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class Jugador {
+public class Jugador implements Serializable, Comparable<Jugador> {
 
     private String nombre;
     private Set<TiposBarco> barcos = new HashSet<>();
+    private Tablero tablero;
 
-    public Jugador(String nombre) {
+    // Constructor
+    public Jugador(String nombre, Tablero tablero) {
         setNombre(nombre);
+        setTablero(tablero);
     }
 
+    // Getters y Setters
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getNombre() {
-        return this.nombre;
     }
 
     public void addBarco(TiposBarco barco) {
         barcos.add(barco);
     }
 
+    public void setTablero(Tablero tablero) {
+        this.tablero = tablero;
+    }
+
+    public String getNombre() {
+        return this.nombre;
+    }
+
     public Set<TiposBarco> getBarcos() {
         return barcos;
     }
 
+    public Tablero getTablero() {
+        return tablero;
+    }
+
+    // equals, hashCode y toString
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -47,5 +61,17 @@ public class Jugador {
         return "Jugador{" +
                 "nombre='" + nombre + '\'' +
                 '}';
+    }
+
+    // compareTo
+    @Override
+    public int compareTo(Jugador jugador) {
+        if (this.barcos.size() > jugador.barcos.size()) {
+            return 1;
+        } else if (this.barcos.size() < jugador.barcos.size()) {
+            return -1;
+        } else {
+            return 0;
+        }
     }
 }

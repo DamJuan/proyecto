@@ -1,8 +1,5 @@
 package HundirLaFlota.clases;
 
-import java.util.Map;
-import java.util.Set;
-
 public enum TiposBarco {
     PORTAVIONES(5, "Portaviones"),
     ACORAZADO(4, "Acorazado"),
