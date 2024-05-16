@@ -1,7 +1,7 @@
 package HundirLaFlota;
 
 import HundirLaFlota.clases.Tablero;
-import HundirLaFlota.clases.barco;
+import HundirLaFlota.clases.Barco;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class HundirFlota {
 
-    private static ArrayList<barco> barcos = new ArrayList<>();
+    private static ArrayList<Barco> barcos = new ArrayList<>();
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -82,8 +82,7 @@ public class HundirFlota {
     }
 
     //TODO cuando se golpea un barco el turno del jugador debe seguir
-//TODO cuando se golpea agua el turno del jugador debe cambiar
-
+    //TODO cuando se golpea agua el turno del jugador debe cambiar
     //TODO MOSTRAR LOS BARCOS QUE QUEDAN POR PONER EN EL TABLERO
     //TODO PRIMER TURNO ES PARA COLOCAR LOS BARCOS EL TURNO ACABA CUANDO SE HAN COLOCADO TODOS LOS BARCOS
 

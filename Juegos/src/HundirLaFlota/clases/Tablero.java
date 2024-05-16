@@ -4,7 +4,7 @@ import HundirLaFlota.clases.*;
 
 public class Tablero {
 
-    private static Character[][] tablero = new Character[10][10];
+    private static String[][] tablero = new String[10][10];
 
     //TODO mostrar el tablero principal vacio
     //Todo cada jugador tiene su propio tablero
@@ -21,7 +21,7 @@ public class Tablero {
             System.out.print(i + " ");
             for (int j = 0; j < tablero[i].length; j++) {
                 if (tablero[i][j] == null) {
-                    tablero[i][j] = '~';
+                    tablero[i][j] = " ~ ";
                 }
                 System.out.print(tablero[i][j] + " ");
             }
@@ -34,7 +34,7 @@ public class Tablero {
             return false;
         }
 
-        if (tablero[fila][columna] != '~') {
+        if (tablero[fila][columna] != " ~ ") {
             return false;
         }
 
@@ -68,7 +68,7 @@ public class Tablero {
 
 }
 
-//TODO implementar la colocacion de los barcos
+    //TODO implementar la colocacion de los barcos
     //TODO MOSTRAR LAS COORDENADAS DEL TABLERO
     //TODO MOSTRAR LOS BARCOS DEL PROPIO JUGADOR EN EL TABLERO
     //TODO CUANDO ES TURNO DE INTENTAR HUNDIR MOSTRAR DONDE SE A LANZADO PROYECTIL Y MOSTRAR DONDE A IMPACTADO
