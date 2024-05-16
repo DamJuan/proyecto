@@ -10,14 +10,23 @@ public class Barco {
     public ArrayList<Integer> posicionesx=new ArrayList<Integer>();
     public ArrayList<Integer> posicionesy=new ArrayList<Integer>();
 
-    // Constructor
+    enum Barcos{
+        PORTAAVIONES(5),ACORAZADO(4),SUBMARINO(3),DESTRUCTOR(2);
+        private final int SIZE;
+        Barcos(int tamano){
+            this.SIZE=tamano;
+        }
+        public int getSIZE(){
+            return SIZE;
+        }
+    }
+
     public Barco(int tamano,String nombre,String posicion) {
         this.tamano = tamano;
         this.nombre = nombre;
         this.posicion=posicion;
     }
 
-    // Getters y Setters
     public String getPosicion() {
         return posicion;
     }
@@ -71,13 +80,15 @@ public class Barco {
     public int posiciones(){
         return this.posicionesx.size();
     }
-
     public void tocado(int fila,int columna){
         this.posicionesx.add(fila);
         this.posicionesy.add(columna);
     }
+    @Override
+    public String toString() {
+        return "barco{" + "nombre=" + nombre + ", tamano=" + tamano + ", posicion=" + posicion + '}';
+    }
 
-    // equals, hashCode y toString
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -89,10 +100,5 @@ public class Barco {
     @Override
     public int hashCode() {
         return Objects.hash(nombre, tamano, posicion, posicionesx, posicionesy);
-    }
-
-    @Override
-    public String toString() {
-        return "barco{" + "nombre=" + nombre + ", tamano=" + tamano + ", posicion=" + posicion + '}';
     }
 }

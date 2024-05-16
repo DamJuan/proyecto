@@ -1,19 +1,21 @@
 package HundirLaFlota.clases;
 
-import HundirLaFlota.clases.*;
+import java.util.Scanner;
 
 public class Tablero {
 
     private static String[][] tablero = new String[10][10];
+
+    static Scanner sc = new Scanner(System.in);
 
     //TODO mostrar el tablero principal vacio
     //Todo cada jugador tiene su propio tablero
     //TODO ir mostrando los barcos en el tablero
 
     public static void mostrarTablero() {
-        System.out.print("  ");
+        System.out.print("   ");
         for (int i = 0; i < tablero.length; i++) {
-            System.out.print(i + " ");
+            System.out.print(i + "   ");
         }
         System.out.println();
 
@@ -29,52 +31,128 @@ public class Tablero {
         }
     }
 
-    public static boolean esPosicionValida(int fila, int columna) {
-        if (fila < 0 || fila >= tablero.length || columna < 0 || columna >= tablero[0].length) {
-            return false;
-        }
+    public static void colocarBarco() {
+        System.out.println("Introduce la fila donde quieres colocar el barco: ");
+        int fila = Integer.parseInt(sc.nextLine());
+        System.out.println("Introduce la columna donde quieres colocar el barco: ");
+        int columna = Integer.parseInt(sc.nextLine());
+        System.out.println("Introduce el tamaño del barco: ");
+        int size = Integer.parseInt(sc.nextLine());
 
-        if (tablero[fila][columna] != " ~ ") {
-            return false;
-        }
-
-        if (barco.getPosicion().equalsIgnoreCase("horizontal")) {
-            if (columna + barco.getTamano() > tablero[0].length) {
-                return false;
-            }
-        } else if (barco.getPosicion().equalsIgnoreCase("vertical")) {
-            if (fila + barco.getTamano() > tablero.length) {
-                return false;
-            }
-        }
-
-        return true;
+        System.out.println(analizarPos(fila, columna, size));
     }
 
-    public static void colocarBarco(int fila, int columna, barco Barco) {
-        if (!esPosicionValida(fila, columna, barco)) {
-            System.out.println("No se puede colocar el barco en la posición dada.");
-            return;
+
+    public static String analizarPos(int fila, int columna, int size) {
+
+        boolean vertArriba;
+        boolean vertAbajo;
+        boolean horDerecha;
+        boolean horIzquierda;
+
+        vertArriba = analizarVertArriba(fila, columna, size);
+        vertAbajo = analizarVertAbajo(fila, columna, size);
+        horDerecha = analizarHorDerecha(fila, columna, size);
+        horIzquierda = analizarHorIzquierda(fila, columna, size);
+
+        String opciones = "Estas son tus opciones: ";
+
+        int opcion = 1;
+
+        if (vertArriba) {
+            opciones += "\n" + opcion + ". Vertical Arriba";
+            opcion++;
         }
 
-        for (int i = 0; i < Barco.getTamano(); i++) {
-            if (Barco.getPosicion().equalsIgnoreCase("horizontal")) {
-                tablero[fila][columna + i] = Barco.getNombre().charAt(0);
-            } else if (Barco.getPosicion().equalsIgnoreCase("vertical")) {
-                tablero[fila + i][columna] = Barco.getNombre().charAt(0);
+        if (vertAbajo) {
+            opciones += "\n" + opcion + ". Vertical Abajo";
+            opcion++;
+        }
+
+        if (horDerecha) {
+            opciones += "\n" + opcion + ". Horizontal Derecha";
+            opcion++;
+        }
+
+        if (horIzquierda) {
+            opciones += "\n" + opcion + ". Horizontal Izquierda";
+            opcion++;
+        }
+
+        opciones += "\n" + opcion + ". Cambiar Posicion";
+
+        return opciones;
+    }
+
+    public static boolean analizarVertArriba(int fila, int columna, int size) {
+
+        boolean sePuede = Boolean.FALSE;
+
+        for (int i = fila; i <= (fila - size); i--) {
+            if (tablero[i][columna].equalsIgnoreCase(" S ")) {
+                sePuede = Boolean.FALSE;
+            } else {
+                sePuede = Boolean.TRUE;
             }
         }
+
+        return sePuede;
+    }
+
+    public static boolean analizarVertAbajo(int fila, int columna, int size) {
+
+        boolean sePuede = Boolean.FALSE;
+
+        for (int i = fila; i <= (fila + size); i++) {
+            if (tablero[i][columna].equalsIgnoreCase(" S ")) {
+                sePuede = Boolean.FALSE;
+            } else {
+                sePuede = Boolean.TRUE;
+            }
+        }
+
+        return sePuede;
+
+    }
+
+    public static boolean analizarHorDerecha(int fila, int columna, int size) {
+
+        boolean sePuede = Boolean.FALSE;
+
+        for (int i = columna; i <= (columna + size); i++) {
+            if (tablero[fila][i].equalsIgnoreCase(" S ")) {
+                sePuede = Boolean.FALSE;
+            } else {
+                sePuede = Boolean.TRUE;
+            }
+        }
+
+        return sePuede;
+
+    }
+
+    public static boolean analizarHorIzquierda(int fila, int columna, int size) {
+
+        boolean sePuede = Boolean.FALSE;
+
+        for (int i = columna; i <= (columna - size); i--) {
+            if (tablero[fila][i].equalsIgnoreCase(" S ")) {
+                sePuede = Boolean.FALSE;
+            } else {
+                sePuede = Boolean.TRUE;
+            }
+        }
+
+        return sePuede;
+
     }
 
 }
 
-    //TODO implementar la colocacion de los barcos
-    //TODO MOSTRAR LAS COORDENADAS DEL TABLERO
-    //TODO MOSTRAR LOS BARCOS DEL PROPIO JUGADOR EN EL TABLERO
-    //TODO CUANDO ES TURNO DE INTENTAR HUNDIR MOSTRAR DONDE SE A LANZADO PROYECTIL Y MOSTRAR DONDE A IMPACTADO
-    //TODO GUARDAR TODAS LAS TIRADAS Y MOSTRARLAS EN EL TABLERO
 
+//TODO implementar la colocacion de los barcos
+//TODO MOSTRAR LAS COORDENADAS DEL TABLERO
+//TODO MOSTRAR LOS BARCOS DEL PROPIO JUGADOR EN EL TABLERO
+//TODO CUANDO ES TURNO DE INTENTAR HUNDIR MOSTRAR DONDE SE A LANZADO PROYECTIL Y MOSTRAR DONDE A IMPACTADO
+//TODO GUARDAR TODAS LAS TIRADAS Y MOSTRARLAS EN EL TABLERO
 
-
-
-}
