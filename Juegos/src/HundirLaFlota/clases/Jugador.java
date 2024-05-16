@@ -8,18 +8,25 @@ import java.util.Set;
 public class Jugador implements Serializable, Comparable<Jugador> {
 
     private String nombre;
+    private boolean esMaquina;
     private Set<TiposBarco> barcos = new HashSet<>();
     private Tablero tablero;
 
     // Constructor
-    public Jugador(String nombre, Tablero tablero) {
+    public Jugador(String nombre, boolean esMaquina, Tablero tablero) {
         setNombre(nombre);
+        setEsMaquina(esMaquina);
         setTablero(tablero);
     }
+
 
     // Getters y Setters
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public void setEsMaquina(boolean esMaquina) {
+        this.esMaquina = esMaquina;
     }
 
     public void addBarco(TiposBarco barco) {
@@ -32,6 +39,10 @@ public class Jugador implements Serializable, Comparable<Jugador> {
 
     public String getNombre() {
         return this.nombre;
+    }
+
+    public boolean getEsMaquina() {
+        return this.esMaquina;
     }
 
     public Set<TiposBarco> getBarcos() {

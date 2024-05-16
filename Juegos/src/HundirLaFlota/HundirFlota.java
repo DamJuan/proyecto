@@ -7,6 +7,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+/*
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+*/
 
 public class HundirFlota {
 
@@ -14,6 +18,7 @@ public class HundirFlota {
     static Scanner sc = new Scanner(System.in);
     static List<Jugador> listaJugadores = new LinkedList<>();
     static List<Tablero> listaTableros = new LinkedList<>();
+    //private static final Logger LOGGER = LogManager.getLogger();
 
     public static void main(String[] args) {
 
@@ -64,8 +69,8 @@ public class HundirFlota {
         Tablero tableroJugador1 = new Tablero();
         Tablero tableroJugador2 = new Tablero();
 
-        Jugador jugador1 = new Jugador(nombreJugador1, tableroJugador1);
-        Jugador jugador2 = new Jugador(nombreJugador2, tableroJugador2);
+        Jugador jugador1 = new Jugador(nombreJugador1, Boolean.FALSE, tableroJugador1);
+        Jugador jugador2 = new Jugador(nombreJugador2, Boolean.FALSE, tableroJugador2);
 
         listaJugadores.add(jugador1);
         listaJugadores.add(jugador2);
@@ -81,10 +86,30 @@ public class HundirFlota {
 
 
     public static void namePVE() {
-        System.out.println("Lo siento, esta opción no está disponible todavía.");
-        //Scanner sc = new Scanner(System.in);
-        //System.out.println("Introduce tu nombre:");
-        //String nombreJugador = sc.nextLine();
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("👤 Introduce el nombre del jugador 👤: ");
+        String nombreJugador = sc.nextLine();
+
+        System.out.println("🤖 Introduce el nombre de la maquina 🤖: ");
+        String nombreMaquina = sc.nextLine();
+
+        Tablero tableroJugador = new Tablero();
+        Tablero tableroMaquina = new Tablero();
+
+        Jugador jugador = new Jugador(nombreJugador, Boolean.FALSE, tableroJugador);
+        Jugador maquina = new Jugador(nombreMaquina, Boolean.TRUE, tableroMaquina);
+
+        listaJugadores.add(jugador);
+        listaJugadores.add(maquina);
+
+        listaTableros.add(tableroJugador);
+        listaTableros.add(tableroMaquina);
+
+        System.out.println("Bienvenidos " + listaJugadores.get(0).getNombre() + " y " + listaJugadores.get(1).getNombre() + "! 🎉🎊🎉🎊");
+
+        empezarJuego();
+
     }
 
     public static void empezarJuego() {
@@ -96,7 +121,7 @@ public class HundirFlota {
 
             while (jugador.getBarcos().size() < 5) {
                 colocarBarcos(jugador, jugador.getTablero());
-                Tablero.mostrarTablero();
+                jugador.getTablero().mostrarTablero();
             }
         }
 
@@ -157,7 +182,25 @@ public class HundirFlota {
                     break;
                 }
 
-                Map<Integer, String> mapOpciones = tablero.colocarBarco(barco.getSize());
+                int fila, columna;
+
+
+                if (!jugador.getEsMaquina()) {
+                    System.out.println("Introduce la fila donde quieres colocar el barco: ");
+                    fila = sc.nextInt();
+
+                    System.out.println("Introduce la columna donde quieres colocar el barco: ");
+                    columna = sc.nextInt();
+
+                } else {
+                    fila = generarNumeroRandom(0, 9);
+                    columna = generarNumeroRandom(0, 9);
+                }
+
+
+                Map<Integer, String> mapOpciones = tablero.colocarBarco(fila, columna, barco.getSize());
+
+                mostrarOpcionesColocarBarco(mapOpciones);
 
                 jugador.addBarco(barco);
                 break;
@@ -167,11 +210,16 @@ public class HundirFlota {
                 break;
         }
 
-
-
-
     }
-        //TODO al elegir el barco se tiene que decidir si se coloca en horizontal o vertical y en qué posición
+
+    public static void mostrarOpcionesColocarBarco(Map<Integer, String> mapOpciones) {
+        System.out.println("Elige la posición de tu barco:");
+        for (Map.Entry<Integer, String> entry : mapOpciones.entrySet()) {
+            System.out.println("\n" + entry.getKey() + ". " + entry.getValue());
+        }
+        int opcion = sc.nextInt();
+        sc.nextLine();
+    }
 
 
     public static int menuOpcionesJuego() {
@@ -187,6 +235,10 @@ public class HundirFlota {
         sc.nextLine();
 
         return opcion;
+    }
+    public static int generarNumeroRandom(int limiteInicial, int limiteFinal) {
+        Random random = new Random();
+        return random.nextInt(limiteFinal - limiteInicial + 1) + limiteInicial;
     }
 
     public static void turnoJugador(Jugador jugador) {

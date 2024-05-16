@@ -11,10 +11,6 @@ public class Tablero {
 
     static Scanner sc = new Scanner(System.in);
 
-    //TODO mostrar el tablero principal vacio
-    //Todo cada jugador tiene su propio tablero
-    //TODO ir mostrando los barcos en el tablero
-
     public Tablero() {
         rellenarTablero();
     }
@@ -35,21 +31,13 @@ public class Tablero {
         for (int i = 0; i < tablero.length; i++) {
             System.out.print(i + " ");
             for (int j = 0; j < tablero[i].length; j++) {
-                if (tablero[i][j] == null) {
-                    tablero[i][j] = " ~ ";
-                }
                 System.out.print(tablero[i][j] + " ");
             }
             System.out.println();
         }
     }
 
-    public static Map<Integer, String> colocarBarco(int size) {
-        System.out.println("Introduce la fila donde quieres colocar el barco: ");
-        int fila = sc.nextInt();
-
-        System.out.println("Introduce la columna donde quieres colocar el barco: ");
-        int columna = sc.nextInt();
+    public static Map<Integer, String> colocarBarco(int fila, int columna,  int size) {
 
         Map<Integer, String> mapOpciones;
         return mapOpciones = analizarPos(fila, columna, size);
