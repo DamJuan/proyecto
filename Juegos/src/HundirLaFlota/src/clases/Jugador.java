@@ -1,7 +1,8 @@
-package HundirLaFlota.clases;
+package clases;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -18,6 +19,32 @@ public class Jugador implements Serializable, Comparable<Jugador> {
         setEsMaquina(esMaquina);
         setTablero(tablero);
     }
+
+    public void colocarBarcosAutomaticamente() {
+        // Lista de barcos a colocar
+        TiposBarco[] barcos = {TiposBarco.PORTAVIONES, TiposBarco.ACORAZADO, TiposBarco.SUBMARINO, TiposBarco.DESTRUCTOR, TiposBarco.FRAGATA};
+
+        // Colocar cada barco en una posición aleatoria
+        for (TiposBarco barco : barcos) {
+            boolean barcoColocado = false;
+            while (!barcoColocado) {
+                int fila = HundirFlota.generarNumeroRandom(0, 9);
+                int columna = HundirFlota.generarNumeroRandom(0, 9);
+                Map<Integer, String> mapOpciones = tablero.colocarBarco(fila, columna, barco.getSize());
+                if (!mapOpciones.isEmpty()) {
+                    // Seleccionar una opción aleatoria del mapa de opciones
+                    List<Integer> keys = new ArrayList<>(mapOpciones.keySet());
+                    int opcion = keys.get(HundirFlota.generarNumeroRandom(0, keys.size()));
+                    // Ejecutar la opción seleccionada
+                    HundirFlota.ejecutarOpcion(opcion, mapOpciones, this, barco.getSize(), fila, columna);
+                    // Agregar el barco a la lista de barcos del jugador
+                    addBarco(barco);
+                    barcoColocado = true;
+                }
+            }
+        }
+    }
+
 
 
     // Getters y Setters

@@ -1,4 +1,4 @@
-package HundirLaFlota.clases;
+package clases;
 
 import java.io.Serializable;
 import java.util.Arrays;
@@ -38,13 +38,12 @@ public class Tablero implements Serializable {
         }
     }
 
-    public static Map<Integer, String> colocarBarco(int fila, int columna,  int size) {
+    public static Map<Integer, String> colocarBarco(int fila, int columna, int size) {
         Map<Integer, String> mapOpciones;
         return mapOpciones = analizarPos(fila, columna, size);
     }
 
     public static void marcarPosicionesBarco(String posicion, int size, int fila, int columna) {
-
         switch (posicion) {
             case "Vertical Arriba":
                 rellenarVerticalArriba(fila, columna, size);
@@ -61,43 +60,36 @@ public class Tablero implements Serializable {
         }
     }
 
-    public static void 
-
     public static void rellenarVerticalArriba(int fila, int columna, int size) {
-        for (int i = fila; i >= (fila - size); i--) {
+        for (int i = fila; i > (fila - size); i--) {
             tablero[i][columna] = " S ";
         }
     }
 
     public static void rellenarVerticalAbajo(int fila, int columna, int size) {
-        for (int i = fila; i <= (fila + size); i++) {
+        for (int i = fila; i < (fila + size); i++) {
             tablero[i][columna] = " S ";
         }
     }
 
     public static void rellenarHorizontalDerecha(int fila, int columna, int size) {
-        for (int i = columna; i <= (columna + size); i++) {
+        for (int i = columna; i < (columna + size); i++) {
             tablero[fila][i] = " S ";
         }
     }
 
     public static void rellenarHorizontalIzquierda(int fila, int columna, int size) {
-        for (int i = columna; i >= (columna - size); i--) {
+        for (int i = columna; i > (columna - size); i--) {
             tablero[fila][i] = " S ";
         }
     }
-
-
 
     public static void marcarGolpe(int fila, int columna) {
         tablero[fila][columna] = " X ";
     }
 
-
     public static Map<Integer, String> analizarPos(int fila, int columna, int size) {
-
         Map<Integer, String> mapOpciones = new LinkedHashMap<>();
-
         int opcion = 1;
 
         if (analizarVertArriba(fila, columna, size)) {
@@ -121,84 +113,85 @@ public class Tablero implements Serializable {
         }
 
         mapOpciones.put(opcion, "Cambiar Posición");
-
         return mapOpciones;
-
     }
 
     public static boolean analizarVertArriba(int fila, int columna, int size) {
-
-        boolean sePuede = Boolean.FALSE;
-
-        for (int i = fila; i <= (fila - size); i--) {
+        if (fila - size < 0) return false; // Verifica que no se salga del límite superior
+        for (int i = fila; i > (fila - size); i--) {
             if (tablero[i][columna].equalsIgnoreCase(" S ")) {
-                sePuede = Boolean.FALSE;
-                break;
-            } else {
-                sePuede = Boolean.TRUE;
+                return false;
             }
         }
-
-        return sePuede;
+        return true;
     }
 
     public static boolean analizarVertAbajo(int fila, int columna, int size) {
-
-        boolean sePuede = Boolean.FALSE;
-
-        for (int i = fila; i <= (fila + size); i++) {
+        if (fila + size > tablero.length) return false; // Verifica que no se salga del límite inferior
+        for (int i = fila; i < (fila + size); i++) {
             if (tablero[i][columna].equalsIgnoreCase(" S ")) {
-                sePuede = Boolean.FALSE;
-                break;
-            } else {
-                sePuede = Boolean.TRUE;
+                return false;
             }
         }
-
-        return sePuede;
-
+        return true;
     }
 
     public static boolean analizarHorDerecha(int fila, int columna, int size) {
-
-        boolean sePuede = Boolean.FALSE;
-
-        for (int i = columna; i <= (columna + size); i++) {
+        if (columna + size > tablero[0].length) return false; // Verifica que no se salga del límite derecho
+        for (int i = columna; i < (columna + size); i++) {
             if (tablero[fila][i].equalsIgnoreCase(" S ")) {
-                sePuede = Boolean.FALSE;
-                break;
-            } else {
-                sePuede = Boolean.TRUE;
+                return false;
             }
         }
-
-        return sePuede;
-
+        return true;
     }
 
     public static boolean analizarHorIzquierda(int fila, int columna, int size) {
-
-        boolean sePuede = Boolean.FALSE;
-
-        for (int i = columna; i <= (columna - size); i--) {
+        if (columna - size < 0) return false; // Verifica que no se salga del límite izquierdo
+        for (int i = columna; i > (columna - size); i--) {
             if (tablero[fila][i].equalsIgnoreCase(" S ")) {
-                sePuede = Boolean.FALSE;
-                break;
-            } else {
-                sePuede = Boolean.TRUE;
+                return false;
             }
         }
-
-        return sePuede;
-
+        return true;
     }
 
+    public boolean hayBarcoEnPosicion(int fila, int columna) {
+        return tablero[fila][columna].equalsIgnoreCase(" S ");
+    }
+
+    public boolean todosBarcosHundidos() {
+        for (int i = 0; i < tablero.length; i++) {
+            for (int j = 0; j < tablero[i].length; j++) {
+                if (tablero[i][j].equalsIgnoreCase(" S ")) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public void mostrarTableroConOponente() {
+        System.out.print("   ");
+        for (int i = 0; i < tablero.length; i++) {
+            System.out.print(i + "   ");
+        }
+        System.out.println();
+
+        for (int i = 0; i < tablero.length; i++) {
+            System.out.print(i + " ");
+            for (int j = 0; j < tablero[i].length; j++) {
+                if (tablero[i][j].equalsIgnoreCase(" S ") || tablero[i][j].equalsIgnoreCase(" X ")) {
+                    System.out.print(" ~ ");
+                } else {
+                    System.out.print(tablero[i][j] + " ");
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    public void marcarAgua(int fila, int columna) {
+        tablero[fila][columna] = " 0 ";
+    }
 }
-
-
-//TODO implementar la colocacion de los barcos
-//TODO MOSTRAR LAS COORDENADAS DEL TABLERO
-//TODO MOSTRAR LOS BARCOS DEL PROPIO JUGADOR EN EL TABLERO
-//TODO CUANDO ES TURNO DE INTENTAR HUNDIR MOSTRAR DONDE SE A LANZADO PROYECTIL Y MOSTRAR DONDE A IMPACTADO
-//TODO GUARDAR TODAS LAS TIRADAS Y MOSTRARLAS EN EL TABLERO
-

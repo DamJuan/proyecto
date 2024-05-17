@@ -1,4 +1,4 @@
-package HundirLaFlota.clases;
+package clases;
 
 public enum TiposBarco {
     PORTAVIONES(5, "Portaviones"),

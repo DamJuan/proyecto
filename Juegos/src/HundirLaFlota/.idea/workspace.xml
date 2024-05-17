@@ -5,14 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c13156f3-38da-475b-93c1-79a4f847210c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/clases/Barcos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/Juegos/Ahorcado/Ahorcado.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/Juegos/Ahorcado/Ahorcado.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/Juegos/Ahorcado/Juego.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/Juegos/Bingo/JuegoBingo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/Juegos/Bingo/JuegoBingo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/Juegos/HundirLaFlota/clases/Tablero.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/Juegos/HundirLaFlota/clases/Tablero.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../out/production/Juegos/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../out/production/Juegos/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Bingo/JuegoBingo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Bingo/JuegoBingo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clases/Tablero.java" beforeDir="false" afterPath="$PROJECT_DIR$/clases/Tablero.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Librerias/log4j-api-2.22.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Librerias/log4j-core-2.22.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/log4j2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/HundirFlota.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Reglas" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/clases/Jugador.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/clases/Tablero.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/clases/TiposBarco.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/jugadores.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Librerias/log4j-api-2.23.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Librerias/log4j-core-2.23.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HundirFlota.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reglas" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clases/Jugador.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clases/Tablero.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clases/TiposBarco.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jugadores.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HundirLaFlota/HundirLaFlota/.idea/workspace.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,24 +32,27 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../../.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "DamJuan"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;DamJuan&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/DamJuan/1-DAM.git",
-    "accountId": "c01fb975-7fd9-4a63-9a4f-cd5844e8086c"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/DamJuan/proyecto.git&quot;,
+    &quot;accountId&quot;: &quot;3cf30c53-1d6c-4dc4-9551-950abd245b90&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2gUnAb1Ub0NAXRcaMFnlMZoiaZS" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -45,21 +60,44 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Application.HundirFlota.executor": "Run",
     "Application.HundirlaFlota.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "nacho",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/1-DAM/PROGRAMACION/TerceraEvaluacion/Experimentos/hundirlaflota-master",
+    "last_opened_file_path": "C:/Users/alumno/Desktop/Proyecto Hundir La Flota/proyecto/Juegos/src/HundirLaFlota/resources",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.28275862",
     "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\alumno\Desktop\Proyecto Hundir La Flota\proyecto\Juegos\src\HundirLaFlota\resources" />
+    </key>
+  </component>
   <component name="RunManager">
+    <configuration name="HundirlaFlota" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="hundirlaflota.HundirlaFlota" />
+      <module name="HundirLaFlota" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="hundirlaflota.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="HundirlaFlota" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="hundirlaflota.HundirlaFlota" />
       <module name="HundirLaFlota" />
@@ -77,8 +115,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
-        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
       </set>
     </attachedChunks>
   </component>
@@ -91,10 +129,15 @@
       <option name="presentableId" value="Default" />
       <updated>1715760880908</updated>
       <workItem from="1715760881957" duration="664000" />
+      <workItem from="1715926382643" duration="176000" />
+      <workItem from="1715926743648" duration="6970000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>
