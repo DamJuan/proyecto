@@ -5,26 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c13156f3-38da-475b-93c1-79a4f847210c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../Librerias/log4j-api-2.22.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Librerias/log4j-core-2.22.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/log4j2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/HundirFlota.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Reglas" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/clases/Jugador.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/clases/Tablero.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/clases/TiposBarco.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/jugadores.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Librerias/log4j-api-2.23.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Librerias/log4j-core-2.23.1.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HundirFlota.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reglas" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clases/Jugador.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clases/Tablero.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clases/TiposBarco.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jugadores.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HundirLaFlota/HundirLaFlota/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HundirFlota.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HundirFlota.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clases/Jugador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clases/Jugador.java" afterDir="false" />
+    </list>
+    <list id="a4faafc4-0085-49b0-9aa5-9336ca158e66" name="Changes by alumno" comment="">
+      <change beforePath="$PROJECT_DIR$/src/HundirFlota.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HundirFlota.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,12 +26,31 @@
     &quot;assignee&quot;: &quot;DamJuan&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/DamJuan/proyecto.git&quot;,
-    &quot;accountId&quot;: &quot;3cf30c53-1d6c-4dc4-9551-950abd245b90&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/DamJuan/proyecto.git",
+    "accountId": "c01fb975-7fd9-4a63-9a4f-cd5844e8086c"
   }
-}</component>
+}]]></component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/HundirFlota.java">
+      <ranges>
+        <range start1="0" end1="1" start2="0" end2="5" changelist="c13156f3-38da-475b-93c1-79a4f847210c" />
+        <range start1="7" end1="9" start2="11" end2="11" changelist="c13156f3-38da-475b-93c1-79a4f847210c" />
+        <range start1="13" end1="14" start2="15" end2="16" changelist="a4faafc4-0085-49b0-9aa5-9336ca158e66" />
+        <range start1="103" end1="104" start2="105" end2="106" changelist="c13156f3-38da-475b-93c1-79a4f847210c" />
+        <range start1="126" end1="127" start2="128" end2="129" changelist="c13156f3-38da-475b-93c1-79a4f847210c" />
+        <range start1="141" end1="141" start2="143" end2="144" changelist="a4faafc4-0085-49b0-9aa5-9336ca158e66" />
+        <range start1="142" end1="143" start2="145" end2="146" changelist="a4faafc4-0085-49b0-9aa5-9336ca158e66" />
+        <range start1="160" end1="162" start2="163" end2="167" changelist="a4faafc4-0085-49b0-9aa5-9336ca158e66" />
+        <range start1="171" end1="171" start2="176" end2="177" changelist="a4faafc4-0085-49b0-9aa5-9336ca158e66" />
+        <range start1="201" end1="202" start2="207" end2="211" changelist="c13156f3-38da-475b-93c1-79a4f847210c" />
+        <range start1="204" end1="204" start2="213" end2="214" changelist="c13156f3-38da-475b-93c1-79a4f847210c" />
+        <range start1="230" end1="233" start2="240" end2="242" changelist="a4faafc4-0085-49b0-9aa5-9336ca158e66" />
+        <range start1="238" end1="239" start2="247" end2="292" changelist="a4faafc4-0085-49b0-9aa5-9336ca158e66" />
+      </ranges>
+    </file>
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -62,17 +67,17 @@
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.HundirFlota.executor": "Run",
-    "Application.HundirlaFlota.executor": "Run",
+    "Application.HundirlaFlota.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "nacho",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/alumno/Desktop/Proyecto Hundir La Flota/proyecto/Juegos/src/HundirLaFlota/resources",
+    "last_opened_file_path": "D:/proyecto/Juegos/Librerias/log4j-core-2.22.1.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.28275862",
     "settings.editor.selected.configurable": "preferences.pluginManager",
@@ -115,8 +120,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
-        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
       </set>
     </attachedChunks>
   </component>
@@ -131,6 +136,7 @@
       <workItem from="1715760881957" duration="664000" />
       <workItem from="1715926382643" duration="176000" />
       <workItem from="1715926743648" duration="6970000" />
+      <workItem from="1715938213327" duration="5563000" />
     </task>
     <servers />
   </component>

@@ -1,17 +1,19 @@
-import clases.*;
+import clases.Jugador;
+import clases.Tablero;
+import clases.TiposBarco;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 
 public class HundirFlota {
 
-    static final File REGLAS = new File("src\\HundirLaFlota\\Reglas");
+    static final File REGLAS = new File("src\\Reglas");
     static Scanner sc = new Scanner(System.in);
     static List<Jugador> listaJugadores = new LinkedList<>();
     static List<Tablero> listaTableros = new LinkedList<>();
@@ -101,7 +103,7 @@ public class HundirFlota {
             System.out.println("👤 Introduce el nombre del jugador 👤: ");
             nombreJugador = sc.nextLine();
 
-            System.out.println("🤖 Introduce el nombre de la maquina 🤖: ");
+            System.out.println("🤖 Introduce el nombre de la máquina 🤖: ");
             nombreMaquina = sc.nextLine();
         } catch (NoSuchElementException e) {
             System.out.println("Error: " + e.getMessage());
@@ -124,7 +126,7 @@ public class HundirFlota {
         empezarJuego();
 
         // La maquina coloca los barcos automaticamente
-        maquina.colocarBarcosAutomaticamente();
+        //maquina.colocarBarcosAutomaticamente();
 
         System.out.println("Tablero de la maquina: ");
         maquina.getTablero().mostrarTablero();
@@ -139,8 +141,9 @@ public class HundirFlota {
 
         for (Jugador jugador : listaJugadores) {
             System.out.println("Turno de " + jugador.getNombre());
+            List<Integer> opciones = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
             while (jugador.getBarcos().size() < 5) {
-                colocarBarcos(jugador);
+                colocarBarcos(jugador, opciones);
                 if (!jugador.getEsMaquina()) {
                     jugador.getTablero().mostrarTablero();
                 }
@@ -158,8 +161,10 @@ public class HundirFlota {
         System.out.println("¡Fin del juego!");
     }
 
-    public static void colocarBarcos(Jugador jugador) {
-        int opcionBarco = menuOpcionesJuego();
+    public static void colocarBarcos(Jugador jugador, List<Integer> opciones) {
+
+        int opcionBarco = menuOpcionesJuego(jugador, opciones);
+
 
         TiposBarco barco = switch (opcionBarco) {
             case 1 -> TiposBarco.PORTAVIONES;
@@ -169,6 +174,7 @@ public class HundirFlota {
             case 5 -> TiposBarco.FRAGATA;
             default -> null;
         };
+
 
         if (barco == null) {
             System.out.println("Opción no válida.");
@@ -199,8 +205,12 @@ public class HundirFlota {
 
         ejecutarOpcion(opcionColocarBarco, mapOpciones, jugador, barco.getSize(), fila, columna);
 
-        jugador.addBarco(barco);
+
+        if (opcionColocarBarco < mapOpciones.size()) {
+            jugador.addBarco(barco);
+        }
     }
+
 
     public static void ejecutarOpcion(int opcion, Map<Integer, String> mapOpciones, Jugador jugador, int size, int fila, int columna) {
         if (opcion < mapOpciones.size()) {
@@ -228,15 +238,58 @@ public class HundirFlota {
         }
     }
 
-    public static int menuOpcionesJuego() {
-        System.out.println("Vamos a colocar los barcos en el tablero." +
-                "\nElige la posición de tu barco:" +
+    public static int menuOpcionesJuego(Jugador jugador, List<Integer> opciones) {
+        System.out.println("Elige el barco que quieras poner:" +
                 "\n1. " + TiposBarco.PORTAVIONES.getNombre() + " (" + TiposBarco.PORTAVIONES.getSize() + " casillas)" +
                 "\n2. " + TiposBarco.ACORAZADO.getNombre() + " (" + TiposBarco.ACORAZADO.getSize() + " casillas)" +
                 "\n3. " + TiposBarco.SUBMARINO.getNombre() + " (" + TiposBarco.SUBMARINO.getSize() + " casillas)" +
                 "\n4. " + TiposBarco.DESTRUCTOR.getNombre() + " (" + TiposBarco.DESTRUCTOR.getSize() + " casillas)" +
                 "\n5. " + TiposBarco.FRAGATA.getNombre() + " (" + TiposBarco.FRAGATA.getSize() + " casillas)");
-        return sc.nextInt();
+        int opcion;
+
+        if (!jugador.getEsMaquina()) {
+            opcion = sc.nextInt();
+            return opcion;
+
+        } else {
+/*
+            boolean validOption = false;
+            while (!validOption) {
+                opcion = generarNumeroRandom(1, 5);
+                if (opciones.contains(opcion) && !jugador.getBarcos().contains(TiposBarco.values()[opcion - 1])) {
+                    validOption = true;
+                }
+            }
+
+
+            List<Integer> opcionesDisponibles = new ArrayList<>(opciones);
+            for (int i = 0; i < opciones.size(); i++) {
+                if (jugador.getBarcos().contains(TiposBarco.values()[opciones.get(i) - 1])) {
+                    opcionesDisponibles.remove(opciones.get(i));
+                }
+            }
+            if (!opcionesDisponibles.isEmpty()) {
+                opcion = opcionesDisponibles.get(generarNumeroRandom(0, opcionesDisponibles.size()));
+                opciones.remove((Integer) opcion);
+            } else {
+                opcion = -1;
+            }
+
+
+*/
+
+            List<Integer> opcionesDisponibles = new ArrayList<>();
+
+            opcion = generarNumeroRandom(1, 5);
+            if (!opcionesDisponibles.contains(opcion)) {
+                opcionesDisponibles.add(opcion);
+                return opcion;
+            } else if (opcionesDisponibles.size() == 5) {
+                //
+            }
+
+        }
+        return -1;
     }
 
     public static int generarNumeroRandom(int limiteInicial, int limiteFinal) {
