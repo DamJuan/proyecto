@@ -61,6 +61,8 @@ public class Tablero implements Serializable {
         }
     }
 
+    public static void 
+
     public static void rellenarVerticalArriba(int fila, int columna, int size) {
         for (int i = fila; i >= (fila - size); i--) {
             tablero[i][columna] = " S ";
