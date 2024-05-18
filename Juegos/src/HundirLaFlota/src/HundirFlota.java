@@ -4,10 +4,7 @@ import clases.TiposBarco;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 
@@ -22,32 +19,36 @@ public class HundirFlota {
 
     public static void main(String[] args) {
 
-        System.out.println("Bienvenido a Hundir la Flota");
-        System.out.println("¿Conoces las reglas del juego? S/N:");
-        String respuesta = sc.nextLine();
+        try {
+            System.out.println("Bienvenido a Hundir la Flota");
+            System.out.println("¿Conoces las reglas del juego? S/N:");
+            String respuesta = sc.nextLine();
 
-        if (respuesta.equalsIgnoreCase("N")) {
-            mostrarInstrucciones();
-        } else if (respuesta.equalsIgnoreCase("S")) {
-            System.out.println("¡Vamos a jugar!");
-        }
+            if (respuesta.equalsIgnoreCase("N")) {
+                mostrarInstrucciones();
+            } else if (respuesta.equalsIgnoreCase("S")) {
+                System.out.println("¡Vamos a jugar!");
+            }
 
-        System.out.println("¿Contra quién quieres jugar? Jugador o Máquina?");
-        String PVPoPVE = sc.nextLine();
+            System.out.println("¿Contra quién quieres jugar? Jugador o Máquina?");
+            String PVPoPVE = sc.nextLine();
 
-        if (PVPoPVE.equalsIgnoreCase("Jugador")) {
-            namePVP();
-        } else if (PVPoPVE.equalsIgnoreCase("Máquina") || PVPoPVE.equalsIgnoreCase("Maquina")) {
-            namePVE();
-        }
+            if (PVPoPVE.equalsIgnoreCase("Jugador")) {
+                namePVP();
+            } else if (PVPoPVE.equalsIgnoreCase("Máquina") || PVPoPVE.equalsIgnoreCase("Maquina")) {
+                namePVE();
+            }
 
-        System.out.println("¿Quieres salir del juego? (S/N)");
-        String respuestaSalir = sc.nextLine();
-        if (respuestaSalir.equalsIgnoreCase("S")) {
-            System.out.println("Saliendo del juego...");
-            salir();
-        } else {
-            System.out.println("¡Vamos a seguir jugando!");
+            System.out.println("¿Quieres salir del juego? (S/N)");
+            String respuestaSalir = sc.nextLine();
+            if (respuestaSalir.equalsIgnoreCase("S")) {
+                System.out.println("Saliendo del juego...");
+                salir();
+            } else {
+                System.out.println("¡Vamos a seguir jugando!");
+            }
+        } catch (NoSuchElementException e) {
+            LOGGER.error("Error al leer la entrada del usuario: " + e.getMessage());
         }
     }
 
@@ -60,7 +61,7 @@ public class HundirFlota {
                 System.out.println(linea);
             }
         } catch (IOException e) {
-            System.out.println("Error al leer el archivo: " + e.getMessage());
+            LOGGER.error("Error al leer el archivo: " + e.getMessage());
         }
     }
 
@@ -75,7 +76,7 @@ public class HundirFlota {
             System.out.println("👤 Introduce el nombre del jugador 2 👤:");
             nombreJugador2 = sc.nextLine();
         } catch (NoSuchElementException e) {
-            System.out.println("Error: " + e.getMessage());
+            LOGGER.error("Error al leer el nombre de los jugadores: " + e.getMessage());
         }
 
         Tablero tableroJugador1 = new Tablero();
@@ -84,13 +85,21 @@ public class HundirFlota {
         Jugador jugador1 = new Jugador(nombreJugador1, Boolean.FALSE, tableroJugador1);
         Jugador jugador2 = new Jugador(nombreJugador2, Boolean.FALSE, tableroJugador2);
 
-        listaJugadores.add(jugador1);
-        listaJugadores.add(jugador2);
+        try {
+            listaJugadores.add(jugador1);
+            listaJugadores.add(jugador2);
 
-        listaTableros.add(tableroJugador1);
-        listaTableros.add(tableroJugador2);
+            listaTableros.add(tableroJugador1);
+            listaTableros.add(tableroJugador2);
 
-        System.out.println("Bienvenidos " + listaJugadores.get(0).getNombre() + " y " + listaJugadores.get(1).getNombre() + "! 🎉🎊🎉🎊");
+            System.out.println("Bienvenidos " + listaJugadores.get(0).getNombre() + " y " + listaJugadores.get(1).getNombre() + "! 🎉🎊🎉🎊");
+        } catch (NullPointerException e) {
+            LOGGER.error("Error al añadir los jugadores o los tableros a la lista: " + e.getMessage());
+        } catch (IndexOutOfBoundsException e) {
+            LOGGER.error("Error al acceder a la lista de jugadores: " + e.getMessage());
+        }
+
+
 
         empezarJuego();
     }
@@ -106,7 +115,7 @@ public class HundirFlota {
             System.out.println("🤖 Introduce el nombre de la máquina 🤖: ");
             nombreMaquina = sc.nextLine();
         } catch (NoSuchElementException e) {
-            System.out.println("Error: " + e.getMessage());
+            LOGGER.error("Error al leer el nombre de los jugadores: " + e.getMessage());
         }
 
         Tablero tableroJugador = new Tablero();
@@ -115,13 +124,20 @@ public class HundirFlota {
         Jugador jugador = new Jugador(nombreJugador, Boolean.FALSE, tableroJugador);
         Jugador maquina = new Jugador(nombreMaquina, Boolean.TRUE, tableroMaquina);
 
-        listaJugadores.add(jugador);
-        listaJugadores.add(maquina);
+        try {
+            listaJugadores.add(jugador);
+            listaJugadores.add(maquina);
 
-        listaTableros.add(tableroJugador);
-        listaTableros.add(tableroMaquina);
+            listaTableros.add(tableroJugador);
+            listaTableros.add(tableroMaquina);
 
-        System.out.println("Bienvenidos " + listaJugadores.get(0).getNombre() + " y " + listaJugadores.get(1).getNombre() + "! 🎉🎊🎉🎊");
+            System.out.println("Bienvenidos " + listaJugadores.get(0).getNombre() + " y " + listaJugadores.get(1).getNombre() + "! 🎉🎊🎉🎊");
+        } catch (NullPointerException e) {
+            LOGGER.error("Error al añadir los jugadores o los tableros a la lista: " + e.getMessage());
+        } catch (IndexOutOfBoundsException e) {
+            LOGGER.error("Error al acceder a la lista de jugadores: " + e.getMessage());
+        }
+
 
         empezarJuego();
 
@@ -137,13 +153,17 @@ public class HundirFlota {
     }
 
     public static void empezarJuego() {
-        System.out.println("Vamos a colocar los barcos en el tablero.");
+        System.out.println("Vamos a colocar los barcos en el tablero. \n");
 
         for (Jugador jugador : listaJugadores) {
             System.out.println("Turno de " + jugador.getNombre());
+
             List<Integer> opciones = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
+
             while (jugador.getBarcos().size() < 5) {
+
                 colocarBarcos(jugador, opciones);
+
                 if (!jugador.getEsMaquina()) {
                     jugador.getTablero().mostrarTablero();
                 }
