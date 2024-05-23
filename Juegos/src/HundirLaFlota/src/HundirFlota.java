@@ -301,11 +301,11 @@ public class HundirFlota {
             List<Integer> opcionesDisponibles = new ArrayList<>();
 
             opcion = generarNumeroRandom(1, 5);
-            if (!opcionesDisponibles.contains(opcion)) {
+            if (opcionesDisponibles.contains(opcion)) {
                 opcionesDisponibles.add(opcion);
                 return opcion;
             } else if (opcionesDisponibles.size() == 5) {
-                //
+
             }
 
         }

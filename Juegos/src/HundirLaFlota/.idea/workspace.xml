@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c13156f3-38da-475b-93c1-79a4f847210c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/HundirFlota.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HundirFlota.java" afterDir="false" />
     </list>
     <list id="a4faafc4-0085-49b0-9aa5-9336ca158e66" name="Changes by alumno" comment="" />
@@ -48,9 +49,10 @@
     "Application.HundirlaFlota.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "nacho",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/proyecto/Juegos/Librerias/log4j-core-2.22.1.jar",
+    "last_opened_file_path": "C:/Users/alumno/Desktop/Proyecto_JuanYNacho/proyecto/Juegos/src/HundirLaFlota",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -59,7 +61,7 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.28275862",
-    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.General",
+    "settings.editor.selected.configurable": "preferences.editor",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -109,6 +111,7 @@
       <workItem from="1715926743648" duration="6970000" />
       <workItem from="1715938213327" duration="5563000" />
       <workItem from="1716033469600" duration="2260000" />
+      <workItem from="1716452809523" duration="805000" />
     </task>
     <servers />
   </component>
