@@ -267,8 +267,22 @@ public class HundirFlota {
                 "\n5. " + TiposBarco.FRAGATA.getNombre() + " (" + TiposBarco.FRAGATA.getSize() + " casillas)");
         int opcion;
 
-        if (!jugador.getEsMaquina()) {
-            opcion = sc.nextInt();
+        if (jugador.getEsMaquina()) {
+            List<Integer> opcionesDisponibles = new ArrayList<>();
+
+            boolean disponible = Boolean.TRUE;
+
+            opcion = generarNumeroRandom(1, 5);
+
+            while (disponible) {
+                opcion = generarNumeroRandom(1, 5);
+
+                if (!opcionesDisponibles.contains(opcion)) {
+                    opcionesDisponibles.add(opcion);
+                    disponible = Boolean.FALSE;
+                }
+            }
+
             return opcion;
 
         } else {
@@ -294,20 +308,10 @@ public class HundirFlota {
             } else {
                 opcion = -1;
             }
+            */
 
-
-*/
-
-            List<Integer> opcionesDisponibles = new ArrayList<>();
-
-            opcion = generarNumeroRandom(1, 5);
-            if (opcionesDisponibles.contains(opcion)) {
-                opcionesDisponibles.add(opcion);
-                return opcion;
-            } else if (opcionesDisponibles.size() == 5) {
-
-            }
-
+            opcion = sc.nextInt();
+            return opcion;
         }
         return -1;
     }

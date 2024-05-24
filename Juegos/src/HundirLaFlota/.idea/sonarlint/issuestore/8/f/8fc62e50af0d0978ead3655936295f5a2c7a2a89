@@ -1,0 +1,23 @@
+
+q
+java:S1121+".Extract the assignment out of this expression.(ÌòìÕ8Ï¨Ù­ø1J$669c0461-5b75-4ef1-8e3d-7db9f5327843
+^
+java:S1700"Rename field "tablero"(Ñ¤Â¯ùÿÿÿÿ8Ó¨Ù­ø1J$1565d89a-7397-47c0-a1ce-7c5452a077aa
+m	java:S106"+Replace this use of System.out by a logger.(×•œ²8ò¨Ù­ø1J$3fbcc233-0e6a-4369-8e02-a022910bf48c
+m	java:S106"+Replace this use of System.out by a logger.(Ù©È±8ó¨Ù­ø1J$683fe5ee-0d91-4346-8c6f-69cecef6d00c
+r	java:S106"+Replace this use of System.out by a logger.(ªÓ¼áþÿÿÿÿ8ó¨Ù­ø1J$6b8249df-b9b9-422a-866e-8761eaf782b1
+m	java:S106!"+Replace this use of System.out by a logger.(Ù©È±8ó¨Ù­ø1J$691f34dc-1b6b-4dc0-972e-3fc49c67f551
+m	java:S106#"+Replace this use of System.out by a logger.(ÐŸ ó8ó¨Ù­ø1J$d511f4b7-1c4c-4220-af18-14a829f52a9f
+r	java:S106%"+Replace this use of System.out by a logger.(ªÓ¼áþÿÿÿÿ8ó¨Ù­ø1J$ee9e5440-c2d1-4418-8b59-10f15d2ab792
+r
+java:S1481*"0Remove this unused "mapOpciones" local variable.(‡¡‘m8ô¨Ù­ø1J$242073cc-d195-4401-8d71-bb073c79ddd5
+i	java:S131/""Add a default case to this switch.(ŽòÜ¦øÿÿÿÿ8ö¨Ù­ø1J$22887a61-57d6-4cb8-8f21-765296f14f59
+n	java:S106¯"+Replace this use of System.out by a logger.(×•œ²8³ÅÛ­ø1J$2aaef335-dd34-4fc1-a273-ac02787ba2c1
+n	java:S106±"+Replace this use of System.out by a logger.(Ù©È±8³ÅÛ­ø1J$48b418fd-68a2-450c-8c84-f4df86a58e78
+s	java:S106³"+Replace this use of System.out by a logger.(ªÓ¼áþÿÿÿÿ8³ÅÛ­ø1J$d91db8e5-3e71-4c53-8cfb-c20d3d2cee8d
+n	java:S106¶"+Replace this use of System.out by a logger.(Ù©È±8³ÅÛ­ø1J$98335a60-9f5e-405e-b9b7-ea6e21c27593
+n	java:S106¹"+Replace this use of System.out by a logger.(¸ßÅË8´ÅÛ­ø1J$a0faf7ae-290c-45f2-9c78-b9e24ca32480
+n	java:S106»"+Replace this use of System.out by a logger.(ÐŸ ó8´ÅÛ­ø1J$d57545e6-d90b-42b7-84a0-4e54daa524d6
+s	java:S106¾"+Replace this use of System.out by a logger.(ªÓ¼áþÿÿÿÿ8´ÅÛ­ø1J$7e9da244-7ce2-4a29-989e-1d59c7d1a2fa
+z
+java:S2696Ã"6Make the enclosing method "static" or remove this set.(®©É©8’€à­ø1J$5368e4cf-ed06-4bab-9846-9ab2bfa54289
